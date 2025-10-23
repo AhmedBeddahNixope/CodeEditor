@@ -58,7 +58,7 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
               inset          : CGSize,
               allowsUndo     : Bool,
               autoscroll     : Bool,
-              backgroundColor: NSColor? = nil,
+              backgroundColor: UIColor? = nil,
               onDeleteBackward: NilBooleanAction)
   {
     self.source                = source
@@ -79,7 +79,7 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
   private var source                 : Binding<String>
   private var selection              : Binding<Range<String.Index>>?
   private var fontSize               : Binding<CGFloat>?
-  private var customBackgroundColor  : NSColor? = nil
+  private var customBackgroundColor  : UIColor? = nil
   private let language               : CodeEditor.Language?
   private let themeName              : CodeEditor.ThemeName
   private let flags                  : CodeEditor.Flags

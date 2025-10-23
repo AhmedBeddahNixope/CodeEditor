@@ -241,7 +241,7 @@ public struct CodeEditor: View {
               inset          : CGSize?                       = nil,
               allowsUndo     : Bool                          = true,
               autoscroll     : Bool                          = true,
-              backgroundColor: NSColor?                      = nil,
+              backgroundColor: UIColor?                      = nil,
               onDeleteBackward : NilBooleanAction = nil)
   {
     self.source           = source
@@ -296,7 +296,7 @@ public struct CodeEditor: View {
               autoPairs      : [ String : String ]? = nil,
               inset          : CGSize?              = nil,
               allowsUndo     : Bool                 = true,
-              backgroundColor: NSColor?             = nil)
+              backgroundColor: UIColor?             = nil)
   {
     assert(!flags.contains(.editable), "Editing requires a Binding")
     self.init(source         : .constant(source),
@@ -322,7 +322,7 @@ public struct CodeEditor: View {
   private let inset            : CGSize
   private let allowsUndo       : Bool
   private let autoscroll       : Bool
-  private let backgroundColor  : NSColor?
+  private let backgroundColor  : UIColor?
   private let onDeleteBackward : NilBooleanAction
     
   public var body: some View {
