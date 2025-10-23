@@ -33,7 +33,7 @@ final class UXCodeTextView: UXTextView {
   
   fileprivate let highlightr = Highlightr()
     
-    var customBackgroundColor: NSColor? = nil
+    var customBackgroundColor: UIColor? = nil
     var onDeleteBackward: NilBooleanAction
     
   private var hlTextStorage : CodeAttributedString? {
