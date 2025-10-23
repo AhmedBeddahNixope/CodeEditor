@@ -241,7 +241,8 @@ public struct CodeEditor: View {
               inset          : CGSize?                       = nil,
               allowsUndo     : Bool                          = true,
               autoscroll     : Bool                          = true,
-              backgroundColor: NSColor?                      = nil)
+              backgroundColor: NSColor?                      = nil,
+              onDeleteBackward : NilBooleanAction = nil)
   {
     self.source           = source
     self.selection        = selection
@@ -257,6 +258,7 @@ public struct CodeEditor: View {
     self.allowsUndo       = allowsUndo
     self.autoscroll       = autoscroll
     self.backgroundColor  = backgroundColor
+    self.onDeleteBackward  = onDeleteBackward
   }
   
   /**
@@ -321,7 +323,8 @@ public struct CodeEditor: View {
   private let allowsUndo       : Bool
   private let autoscroll       : Bool
   private let backgroundColor  : NSColor?
-
+  private let onDeleteBackward : NilBooleanAction
+    
   public var body: some View {
     UXCodeTextViewRepresentable(source         : source,
                                 selection      : selection,
@@ -334,7 +337,8 @@ public struct CodeEditor: View {
                                 inset          : inset,
                                 allowsUndo     : allowsUndo,
                                 autoscroll     : autoscroll,
-                                backgroundColor: backgroundColor)
+                                backgroundColor: backgroundColor,
+                                onDeleteBackward: onDeleteBackward)
   }
 }
 

@@ -19,6 +19,8 @@ import SwiftUI
  */
 struct UXCodeTextViewRepresentable : UXViewRepresentable {
   
+    let onDeleteBackward: NilBooleanAction
+    
   /**
    * Configures a CodeEditor View with the given parameters.
    *
@@ -56,7 +58,8 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
               inset          : CGSize,
               allowsUndo     : Bool,
               autoscroll     : Bool,
-              backgroundColor: NSColor? = nil)
+              backgroundColor: NSColor? = nil,
+              onDeleteBackward: NilBooleanAction)
   {
     self.source                = source
     self.selection             = selection
@@ -70,6 +73,7 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
     self.allowsUndo            = allowsUndo
     self.autoscroll            = autoscroll
     self.customBackgroundColor = backgroundColor
+    self.onDeleteBackward = onDeleteBackward
   }
     
   private var source                 : Binding<String>
@@ -299,6 +303,8 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
       }
       textView.textContainerInset = edgeInsets
       updateTextView(textView)
+        
+      textView.onDeleteBackward = onDeleteBackward
     }
   #endif // iOS
 }
@@ -329,7 +335,8 @@ struct UXCodeTextViewRepresentable_Previews: PreviewProvider {
                                 autoPairs   : [:],
                                 inset       : .init(width: 8, height: 8),
                                 allowsUndo  : true,
-                                autoscroll  : false)
+                                autoscroll  : false,
+                                onDeleteBackward: nil)
       .frame(width: 200, height: 100)
     
     UXCodeTextViewRepresentable(source: .constant("let a = 5"),
@@ -342,7 +349,8 @@ struct UXCodeTextViewRepresentable_Previews: PreviewProvider {
                                 autoPairs   : [:],
                                 inset       : .init(width: 8, height: 8),
                                 allowsUndo  : true,
-                                autoscroll  : false)
+                                autoscroll  : false,
+                                onDeleteBackward: nil)
       .frame(width: 200, height: 100)
     
     UXCodeTextViewRepresentable(
@@ -361,7 +369,8 @@ struct UXCodeTextViewRepresentable_Previews: PreviewProvider {
       autoPairs   : [:],
       inset       : .init(width: 8, height: 8),
       allowsUndo  : true,
-      autoscroll  : false
+      autoscroll  : false,
+      onDeleteBackward: nil
     )
     .frame(width: 540, height: 200)
   }

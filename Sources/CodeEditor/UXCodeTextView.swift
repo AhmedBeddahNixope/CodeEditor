@@ -26,12 +26,16 @@ import Highlightr
  *
  * Currently pretty tightly coupled to `CodeEditor`.
  */
+
+public typealias NilBooleanAction = (() -> Void)?
+
 final class UXCodeTextView: UXTextView {
   
   fileprivate let highlightr = Highlightr()
     
     var customBackgroundColor: NSColor? = nil
-  
+    var onDeleteBackward: NilBooleanAction
+    
   private var hlTextStorage : CodeAttributedString? {
     return textStorage as? CodeAttributedString
   }
@@ -64,6 +68,7 @@ final class UXCodeTextView: UXTextView {
   }
   
   init() {
+      onDeleteBackward = nil
     let textStorage = highlightr.flatMap {
                         CodeAttributedString(highlightr: $0)
                       }
@@ -97,7 +102,14 @@ final class UXCodeTextView: UXTextView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  
+    override func deleteBackward() {
+        if self.text.isEmpty {
+            onDeleteBackward?()
+        }
+        
+        super.deleteBackward()
+    }
+    
   // MARK: - Actions
 
   #if os(macOS)
